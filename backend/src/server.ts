@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes';
+import blogRoutes from './routes/blogRoutes';
 
 // Environment varijable
 dotenv.config();
@@ -23,6 +24,7 @@ server.get('/', (req, res) => {
 });
 
 server.use('/api/users', userRoutes);
+server.use("/api/blogs", blogRoutes)
 
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
