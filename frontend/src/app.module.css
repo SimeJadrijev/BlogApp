@@ -1,0 +1,32 @@
+html {
+	display           : flex;
+	flex-direction    : column;
+	align-items       : center;
+	box-sizing        : border-box;
+	background-color  : var(--purple-light-bg);
+	font-family       : "fuse", serif;
+
+
+	--purple-light-bg : #f5f0ff;
+	--purple-one      : #4c1d95;
+	--purple-two      : #7e22ce;
+	--purple-three-bg : #c084fc;
+}
+
+* {
+	margin  : 0;
+	padding : 0;
+}
+
+
+@font-face {
+	font-family : "fuse";
+	src         : url("./assets/fonts/FuseV.2Display-Book.woff2") format("woff2");
+	font-weight : 400;
+}
+
+@font-face {
+	font-family : "fuse-text";
+	src         : url("./assets/fonts/FuseV.2Text-Book.woff2") format("woff2");
+	font-weight : 400;
+}
