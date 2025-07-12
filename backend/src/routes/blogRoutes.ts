@@ -86,7 +86,49 @@ router.put('/:id', verifyToken, async (req: Request, res: Response) => {
     }
 });
 
-// routes/blogRoutes.ts
+
+router.put('/:id/like', verifyToken, async (req: Request, res: Response) => {
+    const blogId = req.params.id;
+
+    try {
+        const blog = await Blog.findById(blogId);
+        if (!blog) {
+            return res.status(404).json({ message: 'Blog nije pronađen.' });
+        }
+
+        blog.likes += 1;
+        await blog.save();
+
+        res.json({ message: 'Blog lajkan!', blog });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Greška pri lajkanju bloga.' });
+    }
+});
+
+router.put('/:id/dislike', verifyToken, async (req: Request, res: Response) => {
+    const blogId = req.params.id;
+
+    try {
+        const blog = await Blog.findById(blogId);
+        if (!blog) {
+            return res.status(404).json({ message: 'Blog nije pronađen.' });
+        }
+
+        // Smanji lajkove, ali ne ispod 0
+        if (blog.likes > 0) {
+            blog.likes -= 1;
+            await blog.save();
+            res.json({ message: 'Blog dislajkan!', blog });
+        } else {
+            res.status(400).json({ message: 'Broj lajkova je već 0.' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Greška pri dislajkanju bloga.' });
+    }
+});
+
 
 // Ruta za brisanje bloga
 router.delete('/:id', verifyToken, async (req: Request, res: Response) => {
