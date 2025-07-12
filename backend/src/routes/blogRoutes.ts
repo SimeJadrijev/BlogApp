@@ -53,4 +53,67 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 });
 
+// Ruta za ažuriranje bloga
+router.put('/:id', verifyToken, async (req: Request, res: Response) => {
+    const { title, category, image, content } = req.body;
+    const blogId = req.params.id;
+    const author = req.userId;  // Korisnički ID iz tokena
+
+    try {
+        const blog = await Blog.findById(blogId);
+
+        if (!blog) {
+            return res.status(404).json({ message: 'Blog not found.' });
+        }
+
+        // Provjera da li korisnik pokušava ažurirati svoj blog
+        if (blog.author.toString() !== author) {
+            return res.status(403).json({ message: 'You are not the author of this blog.' });
+        }
+
+        // Ažuriranje bloga
+        blog.title = title || blog.title;
+        blog.category = category || blog.category;
+        blog.image = image || blog.image;
+        blog.content = content || blog.content;
+
+        await blog.save();
+
+        res.json({ message: 'Blog updated successfully!', blog });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error updating blog.' });
+    }
+});
+
+// routes/blogRoutes.ts
+
+// Ruta za brisanje bloga
+router.delete('/:id', verifyToken, async (req: Request, res: Response) => {
+    const blogId = req.params.id;
+    const author = req.userId;  // Korisnički ID iz tokena
+
+    try {
+        const blog = await Blog.findById(blogId);
+
+        if (!blog) {
+            return res.status(404).json({ message: 'Blog not found.' });
+        }
+
+        // Provjera da li korisnik pokušava obrisati svoj blog
+        if (blog.author.toString() !== author) {
+            return res.status(403).json({ message: 'You are not the author of this blog.' });
+        }
+
+        await Blog.deleteOne({ _id: blogId });
+
+
+        res.json({ message: 'Blog deleted successfully.' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error deleting blog.' });
+    }
+});
+
+
 export default router;
