@@ -5,6 +5,8 @@ import userRoutes from './routes/userRoutes';
 import blogRoutes from './routes/blogRoutes';
 import commentRoutes from './routes/commentRoutes';
 import cors from 'cors';
+import { seedBlogs } from './seed/blog.seed';
+import { seedUsers } from './seed/user.seed';
 
 
 // Environment varijable
@@ -19,7 +21,11 @@ server.use(cors());
 
 // Spajanje na MongoDB
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/blogApp')
-    .then(() => console.log('Connected to MongoDB'))
+    .then(async () => {
+        console.log('Connected to MongoDB');
+        await seedUsers();
+        await seedBlogs();
+    })
     .catch((err) => console.log(err));
 
 // Ruta
