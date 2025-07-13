@@ -1,0 +1,29 @@
+.navigation {
+	display         : flex;
+	justify-content : center;
+	margin-top      : 50px;
+	font-family     : fuse;
+}
+
+nav {
+	display         : flex;
+	justify-content : space-evenly;
+	gap             : 10px;
+}
+
+nav a {
+	text-decoration  : none;
+	color            : var(--purple-one);
+	text-transform   : uppercase;
+	font-weight      : 900;
+	font-size        : 1.1rem;
+	background-color : var(--purple-three-bg);
+	border-radius    : 5px;
+	padding          : 4px;
+}
+
+nav a:hover {
+	background-color : var(--purple-light-bg);
+	transition       : background-color 0.3s ease;
+}
+
