@@ -4,6 +4,7 @@ import { LandingPage } from './pages/LandingPage';
 import { BlogPage } from './pages/BlogPage';
 import { AuthPage } from './pages/AuthPage';
 import { Navigation } from './components/Navigation';
+import { CreateBlogPage } from './pages/CreateBlogPage';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/auth" element={<AuthPage/>}/>
                 <Route path="/blogs" element={<LandingPage/>}/>
                 <Route path="/blogs/:blogId" element={<BlogPage/>}/>
+                <Route path="/blogs/new" element={<CreateBlogPage/>}/>
             </Routes>
         </div>
     );

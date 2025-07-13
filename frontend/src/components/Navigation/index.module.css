@@ -25,5 +25,6 @@ nav a {
 nav a:hover {
 	background-color : var(--purple-light-bg);
 	transition       : background-color 0.3s ease;
+	outline          : 1px solid var(--purple-one);
 }
 

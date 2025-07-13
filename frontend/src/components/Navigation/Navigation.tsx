@@ -5,8 +5,11 @@ export const Navigation = () => {
     return <div className={c.navigation}>
         <nav>
             <p><Link to={'/blogs'}>Blogs</Link></p>
+            <p><Link to={'/blogs/new'}>New blog</Link></p>
+            <p><Link to={'/auth'}>My profile</Link></p>
             <p><Link to={'/auth'}>Login/Register</Link></p>
 
         </nav>
     </div>;
+    ;
 };

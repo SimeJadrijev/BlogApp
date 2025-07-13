@@ -1,0 +1,59 @@
+.createBlogPage {
+	display        : flex;
+	flex-direction : column;
+	align-items    : center;
+	padding        : 20px;
+}
+
+.createBlogForm {
+	margin-top     : 20px;
+	display        : flex;
+	flex-direction : column;
+	gap            : 10px;
+	width          : 300px;
+}
+
+input, textarea {
+	border        : none;
+	border-radius : 4px;
+	height        : 24px;
+	width         : 100%;
+	display       : flex;
+	align-items   : center;
+	padding       : 5px;
+	font-family   : "fuse";
+	font-size     : 1rem;
+}
+
+select, option {
+	border        : none;
+	border-radius : 4px;
+	height        : 30px;
+	width         : 100%;
+	display       : flex;
+	align-items   : center;
+	font-family   : "fuse";
+	font-size     : 0.8rem;
+}
+
+input:focus, select:focus {
+	border  : none;
+	outline : none;
+}
+
+
+button {
+	background-color : var(--purple-one);
+	color            : white;
+	border           : none;
+	border-radius    : 4px;
+	height           : 30px;
+	padding-inline   : 20px;
+	cursor           : pointer;
+	font-family      : "fuse";
+	font-size        : 0.8rem;
+}
+
+button:hover {
+	background-color : var(--purple-two);
+}
