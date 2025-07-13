@@ -1,5 +1,4 @@
-// models/commentModel.ts
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
 interface IComment extends Document {
     content: string;
