@@ -14,7 +14,8 @@ export const LandingPage: React.FC = () => {
 
     const filteredBlogs = blogs
         ?.filter(blog => blog.title.toLowerCase().includes(searchTerm.toLowerCase()))
-        .filter(blog => !selectedCategory || blog.category === selectedCategory);
+        .filter(blog => !selectedCategory || blog.category === selectedCategory)
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     return (
         <>
             <LandingHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm} selectedCategory={selectedCategory}

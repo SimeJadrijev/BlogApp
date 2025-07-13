@@ -57,7 +57,7 @@ router.post('/login', async (req: Request, res: Response) => {
         const token = jwt.sign(
             { userId: user._id, username: user.username },
             process.env.JWT_SECRET || 'your_jwt_secret',  // Ovo bi trebalo biti pohranjeno u env varijabli
-            { expiresIn: '1h' }  // Token će isteći nakon 1 sata
+            { expiresIn: '1d' }  // Token će isteći nakon 1 sata
         );
 
         res.json({ token });
@@ -66,7 +66,6 @@ router.post('/login', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Došlo je do greške prilikom prijave.' });
     }
 });
-
 
 
 export default router;
