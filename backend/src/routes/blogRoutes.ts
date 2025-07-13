@@ -37,6 +37,19 @@ router.get('/', async (req: Request, res: Response) => {
     }
 });
 
+router.get('/my-blogs', verifyToken, async (req: Request, res: Response) => {
+    const userId = req.userId;
+
+    try {
+        console.log('tuuuu sam');
+        const blogs = await Blog.find({ author: userId }).populate('author', 'username');
+        console.log('jesam li ovdjeee');
+        res.json(blogs);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error fetching your blogs.' });
+    }
+});
 // Ruta za dohvat bloga po ID-u
 router.get('/:id', async (req: Request, res: Response) => {
     const blogId = req.params.id;
@@ -52,6 +65,9 @@ router.get('/:id', async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Error fetching blog.' });
     }
 });
+
+// routes/blogRoutes.ts
+
 
 // Ruta za ažuriranje bloga
 router.put('/:id', verifyToken, async (req: Request, res: Response) => {

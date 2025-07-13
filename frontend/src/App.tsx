@@ -5,6 +5,7 @@ import { BlogPage } from './pages/BlogPage';
 import { AuthPage } from './pages/AuthPage';
 import { Navigation } from './components/Navigation';
 import { CreateBlogPage } from './pages/CreateBlogPage';
+import { MyProfilePage } from './pages/MyProfilePage';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/blogs" element={<LandingPage/>}/>
                 <Route path="/blogs/:blogId" element={<BlogPage/>}/>
                 <Route path="/blogs/new" element={<CreateBlogPage/>}/>
+                <Route path="/my-profile" element={<MyProfilePage/>}/>
             </Routes>
         </div>
     );
