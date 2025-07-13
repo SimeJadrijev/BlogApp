@@ -1,0 +1,42 @@
+.landingHeader {
+	display        : flex;
+	flex-direction : column;
+	gap            : 20px;
+	align-items    : center;
+	margin-block   : 50px;
+}
+
+#ourBlogSign {
+	padding          : 5px;
+	border-radius    : 6px;
+	background-color : var(--purple-three-bg);
+	color            : var(--purple-one);
+}
+
+.landingHeader h1 {
+	color : var(--purple-one);
+}
+
+.landingHeader h3 {
+	font-family : "fuse-text";
+	color       : var(--purple-two);
+	font-size   : 1rem;
+	font-weight : 100;
+}
+
+.landingHeader input {
+	border        : none;
+	border-radius : 4px;
+	height        : 24px;
+	width         : 200px;
+	display       : flex;
+	align-items   : center;
+	padding       : 5px;
+	font-family   : "fuse";
+	font-size     : 0.8rem;
+}
+
+.landingHeader input:focus {
+	border  : none;
+	outline : none;
+}

@@ -10,7 +10,7 @@ html {
 	--purple-light-bg : #f5f0ff;
 	--purple-one      : #4c1d95;
 	--purple-two      : #7e22ce;
-	--purple-three-bg : #c084fc;
+	--purple-three-bg : rgba(192, 132, 252, 0.4);
 }
 
 * {
