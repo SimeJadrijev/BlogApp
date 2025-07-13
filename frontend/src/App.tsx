@@ -1,11 +1,11 @@
 import c from './app.module.css';
-import { BlogCard } from './components/BlogCard';
+import { LandingPage } from './pages/LandingPage/LandingPage.tsx';
 
 function App() {
 
     return (
         <div className={`${c}`}>
-            <BlogCard/>
+            <LandingPage/>
         </div>
     );
 }

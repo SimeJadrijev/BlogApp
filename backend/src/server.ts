@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes';
 import blogRoutes from './routes/blogRoutes';
 import commentRoutes from './routes/commentRoutes';
+import cors from 'cors';
+
 
 // Environment varijable
 dotenv.config();
@@ -13,6 +15,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 server.use(express.json());
+server.use(cors());
 
 // Spajanje na MongoDB
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/blogApp')
