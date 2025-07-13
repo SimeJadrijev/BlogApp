@@ -1,6 +1,5 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-// Definiranje tipova za blog
 interface IBlog extends Document {
     title: string;
     category: string;
@@ -11,7 +10,6 @@ interface IBlog extends Document {
     content: string;
 }
 
-// Definiranje sheme za blog
 const blogSchema: Schema = new Schema(
     {
         title: {
@@ -33,7 +31,7 @@ const blogSchema: Schema = new Schema(
         },
         image: {
             type: String,
-            default: "https://dinarakasko.com/image/cache/catalog/basel-demo/blog-1140x700.png",
+            default: 'https://dinarakasko.com/image/cache/catalog/basel-demo/blog-1140x700.png',
         },
         date: {
             type: Date,
@@ -45,11 +43,10 @@ const blogSchema: Schema = new Schema(
         },
     },
     {
-        timestamps: true, // Dodaje createdAt i updatedAt
+        timestamps: true,
     }
 );
 
-// Kreiranje modela za blog
 const Blog = mongoose.model<IBlog>('Blog', blogSchema);
 
 export default Blog;

@@ -16,6 +16,10 @@
 	margin-top      : 10px;
 }
 
+.blogList a {
+	text-decoration : none;
+}
+
 .profileForm {
 	display        : flex;
 	flex-direction : column;

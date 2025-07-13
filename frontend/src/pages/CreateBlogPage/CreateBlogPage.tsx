@@ -31,7 +31,7 @@ export const CreateBlogPage = () => {
             {
                 onSuccess: () => {
                     alert('Blog successfully created!');
-                    navigate('/blogs'); // Nakon uspjeha vrati na landing page
+                    navigate('/blogs');
                 },
                 onError: () => {
                     alert('Failed to create blog.');

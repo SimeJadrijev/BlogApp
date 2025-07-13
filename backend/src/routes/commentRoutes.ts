@@ -1,16 +1,13 @@
-// routes/commentRoutes.ts
-
 import express, { Request, Response } from 'express';
 import Comment from '../models/commentModel';
 import { verifyToken } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
-// Ruta za dodavanje komentara
 router.post('/:blogId', verifyToken, async (req: Request, res: Response) => {
     const { content } = req.body;
     const blogId = req.params.blogId;
-    const author = req.userId; // Korisnički ID iz tokena
+    const author = req.userId;
 
     try {
         const newComment = new Comment({
@@ -62,7 +59,6 @@ router.delete('/:commentId', verifyToken, async (req: Request, res: Response) =>
         res.status(500).json({ message: 'Greška pri brisanju komentara.' });
     }
 });
-
 
 
 export default router;

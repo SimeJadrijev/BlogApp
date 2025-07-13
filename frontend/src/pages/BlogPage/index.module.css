@@ -17,6 +17,10 @@
 	color : var(--purple-two);
 }
 
+#blogImage {
+	max-width : 1000px;
+}
+
 .authorContainer {
 	display     : flex;
 	gap         : 10px;

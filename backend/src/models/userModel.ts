@@ -1,12 +1,10 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-// Definiranje tipova za korisnika
 interface IUser extends Document {
     username: string;
     password: string;
 }
 
-// Definiranje sheme za korisnika
 const userSchema: Schema = new Schema(
     {
         username: {
@@ -20,11 +18,10 @@ const userSchema: Schema = new Schema(
         },
     },
     {
-        timestamps: true, // Dodaje createdAt i updatedAt
+        timestamps: true,
     }
 );
 
-// Kreiranje modela korisnika
 const User = mongoose.model<IUser>('User', userSchema);
 
 export default User;

@@ -1,4 +1,3 @@
-// backend/seeders/blogSeeder.ts
 import Blog from '../models/blogModel';
 import User from '../models/userModel';
 
@@ -63,7 +62,7 @@ export const seedBlogs = async () => {
             },
             {
                 title: 'Navijači Hajduka najviše se plaše jedne stvari, a oko bivšeg Vatrenog nema nikakve dvojbe - on treba Bijelima',
-                category: 'sports',
+                category: 'sport',
                 image: 'https://media.jutarnji.hr/images/slike/2025/07/13/f_37162439_1280.jpg',
                 content: blogContent,
                 author: users[0]._id,
@@ -77,7 +76,7 @@ export const seedBlogs = async () => {
             },
             {
                 title: 'Bivši košarkaški reprezentativac: ‘Nepravdu nikad nisam podnosio, ali znao sam je maknuti od sebe‘',
-                category: 'sports',
+                category: 'sport',
                 image: 'https://media.jutarnji.hr/images/slike/2025/07/08/f_25264753_1280.jpg',
                 content: blogContent,
                 author: users[1]._id,

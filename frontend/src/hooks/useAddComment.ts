@@ -18,7 +18,6 @@ export const useAddComment = (blogId: string) => {
             return res.data;
         },
         onSuccess: () => {
-            // Refresha komentare za taj blog
             queryClient.invalidateQueries({ queryKey: ['comments', blogId] });
         },
     });

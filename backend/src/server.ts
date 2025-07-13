@@ -9,17 +9,14 @@ import { seedBlogs } from './seed/blog.seed';
 import { seedUsers } from './seed/user.seed';
 
 
-// Environment varijable
 dotenv.config();
 
 const server = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 server.use(express.json());
 server.use(cors());
 
-// Spajanje na MongoDB
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/blogApp')
     .then(async () => {
         console.log('Connected to MongoDB');
@@ -28,7 +25,6 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/blogApp')
     })
     .catch((err) => console.log(err));
 
-// Ruta
 server.get('/', (req, res) => {
     res.send('Hello from backend!');
 });

@@ -1,13 +1,12 @@
 import express, { Request, Response } from 'express';
 import Blog from '../models/blogModel';
-import { verifyToken } from '../middleware/authMiddleware'; // Provjera JWT tokena
+import { verifyToken } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
-// Ruta za kreiranje novog bloga
 router.post('/', verifyToken, async (req: Request, res: Response) => {
     const { title, category, image, content } = req.body;
-    const author = req.userId; // Korisnički ID iz tokena
+    const author = req.userId;
 
     try {
         const newBlog = new Blog({
@@ -26,10 +25,9 @@ router.post('/', verifyToken, async (req: Request, res: Response) => {
     }
 });
 
-// Ruta za dohvat svih blogova
 router.get('/', async (req: Request, res: Response) => {
     try {
-        const blogs = await Blog.find().populate('author', 'username'); // Populiraj autora
+        const blogs = await Blog.find().populate('author', 'username');
         res.json(blogs);
     } catch (error) {
         console.error(error);
@@ -50,7 +48,7 @@ router.get('/my-blogs', verifyToken, async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Error fetching your blogs.' });
     }
 });
-// Ruta za dohvat bloga po ID-u
+
 router.get('/:id', async (req: Request, res: Response) => {
     const blogId = req.params.id;
 
@@ -66,14 +64,10 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 });
 
-// routes/blogRoutes.ts
-
-
-// Ruta za ažuriranje bloga
 router.put('/:id', verifyToken, async (req: Request, res: Response) => {
     const { title, category, image, content } = req.body;
     const blogId = req.params.id;
-    const author = req.userId;  // Korisnički ID iz tokena
+    const author = req.userId;
 
     try {
         const blog = await Blog.findById(blogId);
@@ -82,12 +76,10 @@ router.put('/:id', verifyToken, async (req: Request, res: Response) => {
             return res.status(404).json({ message: 'Blog not found.' });
         }
 
-        // Provjera da li korisnik pokušava ažurirati svoj blog
         if (blog.author.toString() !== author) {
             return res.status(403).json({ message: 'You are not the author of this blog.' });
         }
 
-        // Ažuriranje bloga
         blog.title = title || blog.title;
         blog.category = category || blog.category;
         blog.image = image || blog.image;
@@ -109,16 +101,16 @@ router.put('/:id/like', verifyToken, async (req: Request, res: Response) => {
     try {
         const blog = await Blog.findById(blogId);
         if (!blog) {
-            return res.status(404).json({ message: 'Blog nije pronađen.' });
+            return res.status(404).json({ message: 'Blog not found.' });
         }
 
         blog.likes += 1;
         await blog.save();
 
-        res.json({ message: 'Blog lajkan!', blog });
+        res.json({ message: 'Blog liked.', blog });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Greška pri lajkanju bloga.' });
+        res.status(500).json({ message: 'Error while liking the blog.' });
     }
 });
 
@@ -128,28 +120,26 @@ router.put('/:id/dislike', verifyToken, async (req: Request, res: Response) => {
     try {
         const blog = await Blog.findById(blogId);
         if (!blog) {
-            return res.status(404).json({ message: 'Blog nije pronađen.' });
+            return res.status(404).json({ message: 'Blog not found.' });
         }
 
-        // Smanji lajkove, ali ne ispod 0
         if (blog.likes > 0) {
             blog.likes -= 1;
             await blog.save();
-            res.json({ message: 'Blog dislajkan!', blog });
+            res.json({ message: 'Blog unliked.', blog });
         } else {
-            res.status(400).json({ message: 'Broj lajkova je već 0.' });
+            res.status(400).json({ message: 'Number of likes is already 0.' });
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Greška pri dislajkanju bloga.' });
+        res.status(500).json({ message: 'Error while unliking the blog.' });
     }
 });
 
 
-// Ruta za brisanje bloga
 router.delete('/:id', verifyToken, async (req: Request, res: Response) => {
     const blogId = req.params.id;
-    const author = req.userId;  // Korisnički ID iz tokena
+    const author = req.userId;
 
     try {
         const blog = await Blog.findById(blogId);
@@ -158,7 +148,6 @@ router.delete('/:id', verifyToken, async (req: Request, res: Response) => {
             return res.status(404).json({ message: 'Blog not found.' });
         }
 
-        // Provjera da li korisnik pokušava obrisati svoj blog
         if (blog.author.toString() !== author) {
             return res.status(403).json({ message: 'You are not the author of this blog.' });
         }

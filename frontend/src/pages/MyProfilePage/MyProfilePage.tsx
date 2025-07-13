@@ -4,6 +4,7 @@ import { BlogCard } from '../../components/BlogCard';
 import DefaultUserImage from '../../assets/images/deafult-user.jpg';
 import { useState } from 'react';
 import { useUpdateProfile } from '../../hooks/useUpdateProfile.ts';
+import { Link } from 'react-router-dom';
 
 export const MyProfilePage = () => {
     const { data: blogs } = useMyBlogs();
@@ -54,16 +55,18 @@ export const MyProfilePage = () => {
                 {blogs && blogs.length > 0 ? (
                     blogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                         .map(blog => (
-                            <BlogCard
-                                key={blog._id}
-                                image={blog.image}
-                                category={blog.category}
-                                title={blog.title}
-                                description={blog.content.slice(0, 100) + '...'}
-                                authorName={blog.author.username}
-                                authorImage={DefaultUserImage}
-                                date={new Date(blog.date).toLocaleDateString()}
-                            />
+                            <Link to={`/blogs/${blog._id}`}>
+                                <BlogCard
+                                    key={blog._id}
+                                    image={blog.image}
+                                    category={blog.category}
+                                    title={blog.title}
+                                    description={blog.content.slice(0, 100) + '...'}
+                                    authorName={blog.author.username}
+                                    authorImage={DefaultUserImage}
+                                    date={new Date(blog.date).toLocaleDateString()}
+                                />
+                            </Link>
                         ))
                 ) : (
                     <p>You haven't created any blogs yet.</p>
