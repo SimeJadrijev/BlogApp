@@ -4,6 +4,7 @@ import { useBlog } from '../../hooks/useBlogs.ts';
 import DefaultUserImage from '../../assets/images/deafult-user.jpg';
 import { useEffect, useState } from 'react';
 import { useToggleLike } from '../../hooks/useToggleLike.ts';
+import { CommentsSection } from '../../components/ComponentsSection';
 
 
 export const BlogPage = () => {
@@ -12,6 +13,7 @@ export const BlogPage = () => {
     const [likes, setLikes] = useState(0);
     const [hasLiked, setHasLiked] = useState(false);
     const toggleLike = useToggleLike();
+
 
     const handleLike = () => {
         if (!blogId) return;
@@ -66,6 +68,8 @@ export const BlogPage = () => {
             </div>
             <p className={c.blogContent}>{blog?.content}</p>
             <button id={c.likeButton} className={hasLiked ? c.unlike : c.like} onClick={handleLike}>  {hasLiked ? `👎(${likes})` : `👍 (${likes})`}</button>
+
+            <CommentsSection blogId={blogId || ''}/>
         </div>
     );
 };
