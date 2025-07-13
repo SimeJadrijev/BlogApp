@@ -9,6 +9,7 @@ interface Blog {
     author: {
         username: string;
     };
+    likes: number;
     date: string;
 }
 
@@ -40,5 +41,6 @@ export const useBlog = (id: string) => {
         queryKey: ['blog', id],
         queryFn: () => fetchBlog(id),
         enabled: !!id,
+        placeholderData: (previousData) => previousData,
     });
 };

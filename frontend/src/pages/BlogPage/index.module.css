@@ -13,6 +13,10 @@
 	max-width  : 1000px;
 }
 
+.blogPage h4 {
+	color : var(--purple-two);
+}
+
 .authorContainer {
 	display     : flex;
 	gap         : 10px;

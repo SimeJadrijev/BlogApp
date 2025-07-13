@@ -22,7 +22,7 @@ export const LandingPage: React.FC = () => {
                            setSelectedCategory={setSelectedCategory}/>
             <div className={c.landingPage}>
                 {filteredBlogs && filteredBlogs.map(blog => (
-                    <Link to={`/blogs/${encodeURIComponent(blog._id)}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link key={blog._id} to={`/blogs/${encodeURIComponent(blog._id)}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                         <BlogCard
                             key={blog._id}
                             image={blog.image}
