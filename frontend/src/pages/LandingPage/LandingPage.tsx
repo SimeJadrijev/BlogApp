@@ -19,11 +19,15 @@ import { LandingHeader } from '../../components/LandingHeader';
 export const LandingPage: React.FC = () => {
     const { data: blogs } = useBlogs();
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('');
 
-    const filteredBlogs = blogs?.filter(blog => blog.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filteredBlogs = blogs
+        ?.filter(blog => blog.title.toLowerCase().includes(searchTerm.toLowerCase()))
+        .filter(blog => !selectedCategory || blog.category === selectedCategory);
     return (
         <>
-            <LandingHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+            <LandingHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm} selectedCategory={selectedCategory}
+                           setSelectedCategory={setSelectedCategory}/>
             <div className={c.landingPage}>
                 {filteredBlogs && filteredBlogs.map(blog => (
                     <BlogCard

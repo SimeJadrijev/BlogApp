@@ -1,6 +1,7 @@
 .landingPage {
-	display   : flex;
-	width     : 1200px;
-	flex-wrap : wrap;
-	gap       : 20px;
+	display         : flex;
+	width           : 1200px;
+	flex-wrap       : wrap;
+	justify-content : center;
+	gap             : 20px;
 }
