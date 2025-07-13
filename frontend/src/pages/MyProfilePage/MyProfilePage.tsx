@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useUpdateProfile } from '../../hooks/useUpdateProfile.ts';
 
 export const MyProfilePage = () => {
-    const { data: blogs, isLoading } = useMyBlogs();
+    const { data: blogs } = useMyBlogs();
     const updateUser = useUpdateProfile();
 
     const [username, setUsername] = useState('');
@@ -29,9 +29,6 @@ export const MyProfilePage = () => {
         );
     };
 
-    if (isLoading) {
-        return <p>Loading your blogs...</p>;
-    }
 
     return (
         <div className={c.myProfilePage}>
@@ -55,18 +52,19 @@ export const MyProfilePage = () => {
             <h2>My Blogs</h2>
             <div className={c.blogList}>
                 {blogs && blogs.length > 0 ? (
-                    blogs.map(blog => (
-                        <BlogCard
-                            key={blog._id}
-                            image={blog.image}
-                            category={blog.category}
-                            title={blog.title}
-                            description={blog.content.slice(0, 100) + '...'}
-                            authorName={blog.author.username}
-                            authorImage={DefaultUserImage}
-                            date={new Date(blog.date).toLocaleDateString()}
-                        />
-                    ))
+                    blogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                        .map(blog => (
+                            <BlogCard
+                                key={blog._id}
+                                image={blog.image}
+                                category={blog.category}
+                                title={blog.title}
+                                description={blog.content.slice(0, 100) + '...'}
+                                authorName={blog.author.username}
+                                authorImage={DefaultUserImage}
+                                date={new Date(blog.date).toLocaleDateString()}
+                            />
+                        ))
                 ) : (
                     <p>You haven't created any blogs yet.</p>
                 )}
